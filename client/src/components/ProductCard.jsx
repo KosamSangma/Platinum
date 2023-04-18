@@ -19,6 +19,7 @@ import { StarIcon } from '@chakra-ui/icons'
 import { useState } from 'react'
 
 const Rating = ({ rating, numReviews }) => {
+  // eslint-disable-next-line no-unused-vars
   const { iconSize, setIconSize } = useState('14px')
   return (
     <Flex>
@@ -49,7 +50,7 @@ const ProductCard = ({ product }) => {
       shadow='lg'
       position='relative'
     >
-      {product.isNew && <Circle size='10px' position='absolute' top={2} right={2} bg='green.300' />}
+      {product.productIsNew && <Circle size='10px' position='absolute' top={2} right={2} bg='green.300' />}
       {product.stock <= 0 && <Circle size='10px' position='absolute' top={2} right={2} bg='red.300' />}
       <Image src={product.image} alt={product.name} roundedTop='lg' />
 
@@ -59,7 +60,7 @@ const ProductCard = ({ product }) => {
             Sold Out
           </Badge>
         )}
-        {product.isNew && (
+        {product.ProductIsNew && (
           <Badge rounded='full' px='2' fontSize='0.8em' colorScheme='green'>
             New
           </Badge>

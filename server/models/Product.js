@@ -38,7 +38,7 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    numberOfReviews: {
+    numReviews: {
       type: Number,
       required: true,
     },
@@ -52,7 +52,7 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    productIsNew: {
+    productisNew: {
       type: Boolean,
       default: false,
     },
