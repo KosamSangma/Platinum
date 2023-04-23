@@ -2,19 +2,17 @@ import express from 'express'
 import Product from '../models/Product.js'
 const productRoutes = express.Router()
 
-// const getProducts = async (req, res) => {
-//   const products = await Product.find()
+const getProducts = async (req, res) => {
+  const products = await Product.find()
 
-//   res.json(products)
-// }
+  res.json(products)
+}
 
-// productRoutes.route('/').get(getProducts)
-
-productRoutes.get('/', async (req, res) => {
-  await Product.find()
-    .then((products) => res.json(products))
-    .catch((err) => res.status(400).json('Error, Data not found!'))
-})
+// productRoutes.get('/', async (req, res) => {
+//   await Product.find()
+//     .then((products) => res.json(products))
+//     .catch((err) => res.status(400).json('Error, Data not found!'))
+// })
 
 const getProduct = async (req, res) => {
   const product = await Product.findById(req.params.id)
@@ -27,6 +25,7 @@ const getProduct = async (req, res) => {
   }
 }
 
+productRoutes.route('/').get(getProducts)
 productRoutes.route('/:id').get(getProduct)
 
 export default productRoutes
