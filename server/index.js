@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-// import connectToDatabase from './database.js'
+//import connectToDatabase from './database.js'
 import express from 'express'
 import mongoose from 'mongoose'
 
