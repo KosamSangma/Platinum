@@ -45,7 +45,7 @@ const CartOrderSummary = () => {
             Total
           </Text>
           <Text fontSize='l' fontWeight='semibold'>
-            Rs.{subtotal <= 1000 ? Number(subtotal) + Number(standardShipping) : subtotal}
+            ₹{subtotal <= 1000 ? Number(subtotal) + Number(standardShipping) : subtotal}
           </Text>
         </Flex>
       </Stack>

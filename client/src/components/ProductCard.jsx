@@ -72,11 +72,11 @@ const ProductCard = ({ product }) => {
       position='relative'
     >
       {product.productIsNew && <Circle size='10px' position='absolute' top={2} right={2} bg='green.300' />}
-      {product.stock <= 0 && <Circle size='10px' position='absolute' top={2} right={2} bg='red.300' />}
+      {product.stock === 0 && <Circle size='10px' position='absolute' top={2} right={2} bg='red.300' />}
       <Image src={product.image} alt={product.name} roundedTop='lg' />
 
       <Box flex='1' maxH='5' alignItems='baseline'>
-        {product.stock <= 0 && (
+        {product.stock === 0 && (
           <Badge rounded='full' px='2' fontSize='0.8em' colorScheme='red'>
             Sold Out
           </Badge>
@@ -89,7 +89,7 @@ const ProductCard = ({ product }) => {
       </Box>
 
       <Flex mt='1' justifyContent='space-between' alignContent='center'>
-        <Link as={ReactLink} to={`/product${product.id}`} pt='2' cursor='pointer'>
+        <Link as={ReactLink} to={`/products/${product._id}`} pt='2' cursor='pointer'>
           <Box fontSize='2xl' fontWeight='semibold' lineHeight='tight'>
             {product.name}
           </Box>
@@ -101,15 +101,26 @@ const ProductCard = ({ product }) => {
       <Flex justify='space-between'>
         <Box fontSize='2xl' color={useColorModeValue('gray.800', 'white')}>
           <Box as='span' color={'gray.600'} fontSize='lg'>
-            Rs
+            ₹
           </Box>
           {product.price.toFixed(2)}
         </Box>
+        {/* <Stack>
+          {product.stock === 0 ? (
+            <p>Sold Out!</p>
+          ) : ( */}
         <Tooltip label='Add to cart' bg='white' placement='top' color='gray.800' fontSize='1.2em'>
-          <Button variant='ghost' display={'flex'} disabled={product.stock <= 0} onClick={() => addItem(product._id)}>
+          <Button
+            variant='ghost'
+            display={'flex'}
+            isDisabled={product.stock === 0}
+            onClick={() => addItem(product._id)}
+          >
             <Icon as={FiShoppingCart} h={7} w={7} alignSelf='center' />
           </Button>
         </Tooltip>
+        {/* )}
+        </Stack> */}
       </Flex>
     </Stack>
   )

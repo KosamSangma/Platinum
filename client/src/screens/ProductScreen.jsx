@@ -25,9 +25,9 @@ import { getProduct } from '../redux/actions/productActions'
 import { addCartItem } from '../redux/actions/cartActions'
 import { useEffect, useState } from 'react'
 
-const ProductScreen = () => {
+const ProductScreen = (props) => {
   const [amount, setAmount] = useState(1)
-  let { id } = useParams()
+  const { id } = useParams()
   const toast = useToast()
   //redux
   const dispatch = useDispatch()
@@ -87,7 +87,7 @@ const ProductScreen = () => {
                     New
                   </Badge>
                 )}
-                {product.stock === 0 && (
+                {product.stock <= 0 && (
                   <Badge rounded='full' w='70px' fontSize='0.8em' colorScheme='red'>
                     Sold out
                   </Badge>
@@ -97,7 +97,7 @@ const ProductScreen = () => {
                 </Heading>
                 <Stack spacing='5'>
                   <Box>
-                    <Text fontSize='xl'>${product.price}</Text>
+                    <Text fontSize='xl'>₹{product.price}</Text>
                     <Flex>
                       <HStack spacing='2px'>
                         <StarIcon color='orange.500' />
@@ -112,37 +112,40 @@ const ProductScreen = () => {
                     </Flex>
                   </Box>
                   <Text>{product.description}</Text>
+
                   <Text fontWeight={'bold'}>Quantity</Text>
                   <Flex w='170px' p='5px' border='1px' borderColor='gray.200' alignItems='center'>
-                    <Button disabled={amount <= 1} onClick={() => changeAmount('minus')}>
+                    <Button isDisabled={amount <= 1} onClick={() => changeAmount('minus')}>
                       <MinusIcon />
                     </Button>
+
                     <Text mx='30px'>{amount}</Text>
-                    <Button disabled={amount >= product.stock} onClick={() => changeAmount('plus')}>
+                    <Button isDisabled={amount >= product.stock} onClick={() => changeAmount('plus')}>
                       <SmallAddIcon w='20px' h='25px' />
                     </Button>
                   </Flex>
-                  <Button disabled={product.stock === 0} colorScheme='orange' onClick={() => addItem()}>
+                  <Button isDisabled={product.stock <= 0} colorScheme='orange' onClick={() => addItem()}>
                     Add to cart
                   </Button>
+
                   <Stack width='270px'>
                     <Flex alignItems='center'>
                       <BiPackage size='20px' />
                       <Text fontWeight='medium' fontSize='sm' ml='2'>
-                        Free shipping if order is above $1000
+                        Free shipping if order is above ₹1000
                       </Text>
                     </Flex>
                     <Flex alignItems='center'>
                       <BiCheckShield size='20px' />
                       <Text fontWeight='medium' fontSize='sm' ml='2'>
-                        2 year extended warranty
+                        Premium quality
                       </Text>
                     </Flex>
 
                     <Flex alignItems='center'>
                       <BiSupport size='20px' />
                       <Text fontWeight='medium' fontSize='sm' ml='2'>
-                        We're here for you 24/7
+                        Fast Delivery
                       </Text>
                     </Flex>
                   </Stack>
