@@ -31,12 +31,12 @@ const LandingScreen = () => (
             <Flex alignItems='center'>
               <Icon as={GiTechnoHeart} h={12} w={12} color={useColorModeValue('green.500', 'green.300')} />
               <Text fontSize='4xl' fontWeight='bold'>
-                Platinum
+                Green Oasis
               </Text>
             </Flex>
 
             <Heading size='xl' fontWeight='normal'>
-              Refresh your mind
+              Make your surroundings beautiful
             </Heading>
           </Stack>
           <HStack spacing='3'>

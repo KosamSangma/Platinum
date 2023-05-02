@@ -21,15 +21,30 @@ import {
 import { Link as ReactLink } from 'react-router-dom'
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon, ChevronDownIcon } from '@chakra-ui/icons'
 import { CgProfile } from 'react-icons/cg'
-import { MdLocalShipping, MdLogout } from 'react-icons/md'
+import { MdLocalShipping, MdLogout, MdOutlineAdminPanelSettings } from 'react-icons/md'
+import { FiShoppingCart } from 'react-icons/fi'
 import { GiTechnoHeart } from 'react-icons/gi'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../redux/actions/userActions'
 
+const ShoppingCartIcon = () => {
+  const cartInfo = useSelector((state) => state.cart)
+  const { cart } = cartInfo
+  return (
+    <Flex>
+      <Text fontStyle='italic' as='sub' fontSize='xs'>
+        {cart.length}
+      </Text>
+      <Icon ml='-1.5' as={FiShoppingCart} h='4' w='7' alignSelf='center' />
+      Cart
+    </Flex>
+  )
+}
+
 const links = [
   { linkName: 'Products', path: '/products' },
-  { linkName: 'ShoppingCart', path: '/cart' },
+  { linkName: <ShoppingCartIcon />, path: '/cart' },
 ]
 
 const NavLink = ({ path, children }) => (
@@ -47,7 +62,7 @@ const NavLink = ({ path, children }) => (
 
 const Navbar = () => {
   const { isOpen, onClose, onOpen } = useDisclosure()
-  const { ColorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   const [isHovering, setIsHovering] = useState(false)
   const user = useSelector((state) => state.user)
   const { userInfo } = user
@@ -79,7 +94,7 @@ const Navbar = () => {
           >
             <Flex alignItems='center'>
               <Icon as={GiTechnoHeart} h={6} w={6} color={isHovering ? 'cyan.400' : 'green.400'}></Icon>
-              <Text fontWeight='extrabold'>Platinum</Text>
+              <Text fontWeight='extrabold'>Green Oasis</Text>
             </Flex>
           </Link>
           <HStack as='nav' spacing={4} display={{ base: 'none', md: 'flex' }}>
@@ -93,7 +108,7 @@ const Navbar = () => {
         <Flex alignItems='center'>
           <NavLink>
             <Icon
-              as={ColorMode === 'light' ? MoonIcon : SunIcon}
+              as={colorMode === 'light' ? MoonIcon : SunIcon}
               alignSelf='center'
               onClick={() => toggleColorMode()}
             ></Icon>
@@ -112,6 +127,15 @@ const Navbar = () => {
                   <MdLocalShipping />
                   <Text ml='2'>Your Orders</Text>
                 </MenuItem>
+                {userInfo.isAdmin === 'true' && (
+                  <>
+                    <MenuDivider />
+                    <MenuItem as={ReactLink} to={'/admin-console'}>
+                      <MdOutlineAdminPanelSettings />
+                      <Text ml='2'>Admin Console</Text>
+                    </MenuItem>
+                  </>
+                )}
                 <MenuDivider />
                 <MenuItem onClick={logoutHandler}>
                   <MdLogout />
@@ -131,8 +155,8 @@ const Navbar = () => {
                 display={{ base: 'none', md: 'inline-flex' }}
                 fontSize='sm'
                 fontWeight={600}
-                _hover={{ bg: 'orange.400' }}
-                bg='orange.500'
+                _hover={{ bg: 'green.400' }}
+                bg='green.500'
                 color='white'
               >
                 Sign Up

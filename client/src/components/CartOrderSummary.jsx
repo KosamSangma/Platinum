@@ -52,7 +52,7 @@ const CartOrderSummary = () => {
       <Button
         as={ReactLink}
         to='/checkout'
-        colorScheme='orange'
+        colorScheme='green'
         size='lg'
         fontSize='md'
         rightIcon={<FaArrowRight />}

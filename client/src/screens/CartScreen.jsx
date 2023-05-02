@@ -72,7 +72,7 @@ const CartScreen = () => {
 
               <HStack mt='6' fontWeight='semibold'>
                 <p>or</p>
-                <Link as={ReactLink} to='/products' color={mode('orange.500', 'orange.200')}>
+                <Link as={ReactLink} to='/products' color={mode('green.500', 'green.200')}>
                   Continue Shopping
                 </Link>
               </HStack>

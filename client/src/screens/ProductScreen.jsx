@@ -19,7 +19,8 @@ import {
   Badge,
 } from '@chakra-ui/react'
 import { MinusIcon, StarIcon, SmallAddIcon } from '@chakra-ui/icons'
-import { BiPackage, BiCheckShield, BiSupport } from 'react-icons/bi'
+import { BiPackage, BiCheckShield } from 'react-icons/bi'
+import { TbTruckDelivery } from 'react-icons/tb'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../redux/actions/productActions'
 import { addCartItem } from '../redux/actions/cartActions'
@@ -124,7 +125,7 @@ const ProductScreen = (props) => {
                       <SmallAddIcon w='20px' h='25px' />
                     </Button>
                   </Flex>
-                  <Button isDisabled={product.stock <= 0} colorScheme='orange' onClick={() => addItem()}>
+                  <Button isDisabled={product.stock <= 0} colorScheme='green' onClick={() => addItem()}>
                     Add to cart
                   </Button>
 
@@ -143,7 +144,7 @@ const ProductScreen = (props) => {
                     </Flex>
 
                     <Flex alignItems='center'>
-                      <BiSupport size='20px' />
+                      <TbTruckDelivery size='20px' />
                       <Text fontWeight='medium' fontSize='sm' ml='2'>
                         Fast Delivery
                       </Text>
