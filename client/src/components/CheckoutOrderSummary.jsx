@@ -10,16 +10,13 @@ import {
   Divider,
   Button,
   Radio,
-  Toast,
 } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as ReactLink, useNavigate } from 'react-router-dom'
-import { PhoneIcon, EmailIcon, ChatIcon } from '@chakra-ui/icons'
+import { PhoneIcon, EmailIcon } from '@chakra-ui/icons'
 import { createOrder, resetOrder } from '../redux/actions/orderActions'
 import { useEffect, useState, useCallback } from 'react'
 import CheckoutItem from './CheckoutItem'
-//import PayPalButton from './PayPalButton'
-// import GooglePayButton from '@google-pay/button-react'
 
 import { resetCart } from '../redux/actions/cartActions'
 
@@ -55,7 +52,7 @@ const CheckoutOrderSummary = () => {
   }, [error, shippingAddress, total, expressShipping, shipping, dispatch])
 
   const onPaymentSuccess = async (data) => {
-    if (payMethod !== true) {
+    if (!payMethod) {
       alert('Select a payment method!')
       return
     }
@@ -71,20 +68,12 @@ const CheckoutOrderSummary = () => {
         userInfo,
       })
     )
-    dispatch(resetOrder())
-    dispatch(resetCart())
-    setPayMethod(false)
+
+    // dispatch(resetOrder())
+    // dispatch(resetCart())
+    //setPayMethod(false)
     navigate('/order-success')
   }
-
-  // const onPaymentError = () => {
-  //   toast({
-  //     description: 'Something went wrong during the payment process',
-  //     status: 'error',
-  //     duration: '600000',
-  //     isClosable: true,
-  //   })
-  // }
 
   return (
     <Stack spacing='8' rounded='xl' padding='8' width='full'>
@@ -126,12 +115,6 @@ const CheckoutOrderSummary = () => {
           </Text>
         </Flex>
       </Stack>
-      {/* <PayPalButton
-        total={total}
-        onPaymentSuccess={onPaymentSuccess}
-        onPaymentError={onPaymentError}
-        disabled={buttonDisabled}
-      /> */}
 
       <p>Select a Payment method: </p>
       <Radio size='md' name='1' color='green.300' onChange={() => setPayMethod(true)}>
@@ -144,10 +127,6 @@ const CheckoutOrderSummary = () => {
       <Box align='center'>
         <Text fontSize='sm'>Have questions? or need help to complete your order?</Text>
         <Flex justifyContent='center' color={mode('orange.500', 'orange.100')}>
-          <Flex align='center'>
-            <ChatIcon />
-            <Text m='2'>Live Chat</Text>
-          </Flex>
           <Flex align='center'>
             <PhoneIcon />
             <Text m='2'>Phone</Text>

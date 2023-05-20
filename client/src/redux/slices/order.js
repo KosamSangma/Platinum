@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const initialState = {
   loading: false,
-  error: true,
+  error: null,
   shippingAddress: null,
   orderInfo: null,
 }
@@ -14,16 +14,22 @@ export const orderSlice = createSlice({
     setLoading: (state) => {
       state.loading = true
     },
-    setError: (state, { payload }) => {
-      state.error = payload
+    setError: (state, action) => {
+      state.error = action.payload
       state.loading = false
     },
     shippingAddressAdd: (state, { payload }) => {
       state.shippingAddress = payload
       state.loading = false
     },
+    // clearOrder: (state) => {
+    //   state = initialState
+    // },
     clearOrder: (state) => {
-      state = initialState
+      state.loading = initialState.loading
+      state.error = initialState.error
+      state.shippingAddress = initialState.shippingAddress
+      state.orderInfo = initialState.orderInfo
     },
   },
 })
