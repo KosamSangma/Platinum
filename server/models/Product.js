@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    brand: {
+    species: {
       type: String,
       required: true,
       default: 0,
@@ -42,6 +42,7 @@ const productSchema = new mongoose.Schema(
     numReviews: {
       type: Number,
       required: true,
+      default: 0,
     },
     price: {
       type: Number,
@@ -53,7 +54,7 @@ const productSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-    productisNew: {
+    productIsNew: {
       type: Boolean,
       default: false,
     },

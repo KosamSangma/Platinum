@@ -17,6 +17,7 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  Select,
 } from '@chakra-ui/react'
 import { Link as ReactLink } from 'react-router-dom'
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon, ChevronDownIcon } from '@chakra-ui/icons'
@@ -97,14 +98,22 @@ const Navbar = () => {
               <Text fontWeight='extrabold'>Green Oasis</Text>
             </Flex>
           </Link>
+
           <HStack as='nav' spacing={4} display={{ base: 'none', md: 'flex' }}>
             {links.map((link) => (
               <NavLink key={link.linkName} path={link.path}>
                 {link.linkName}
               </NavLink>
             ))}
+            <Select variant='outline' defaultValue='all' ml={4}>
+              <option value='all'>Seasons</option>
+              <option value='summer'>Summer</option>
+              <option value='winter'>Winter</option>
+              <option value='spring'>Spring</option>
+            </Select>
           </HStack>
         </HStack>
+
         <Flex alignItems='center'>
           <NavLink>
             <Icon

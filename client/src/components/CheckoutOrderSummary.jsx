@@ -52,6 +52,7 @@ const CheckoutOrderSummary = () => {
   }, [error, shippingAddress, total, expressShipping, shipping, dispatch])
 
   const onPaymentSuccess = async (data) => {
+    console.log(cart, shippingAddress, shipping(), total(), userInfo)
     if (!payMethod) {
       alert('Select a payment method!')
       return
@@ -61,17 +62,17 @@ const CheckoutOrderSummary = () => {
       createOrder({
         orderItems: cart,
         shippingAddress,
-        paymentMethod: data.paymentSource,
-        paymentDetails: data,
+        //  paymentMethod: data.paymentSource,
+        //  paymentDetails: data,
         shippingPrice: shipping(),
         totalPrice: total(),
         userInfo,
       })
     )
 
-    // dispatch(resetOrder())
-    // dispatch(resetCart())
-    //setPayMethod(false)
+    dispatch(resetOrder())
+    dispatch(resetCart())
+    setPayMethod(false)
     navigate('/order-success')
   }
 
@@ -120,7 +121,7 @@ const CheckoutOrderSummary = () => {
       <Radio size='md' name='1' color='green.300' onChange={() => setPayMethod(true)}>
         Cash On Delivery
       </Radio>
-      <Button onClick={onPaymentSuccess} disabled={buttonDisabled}>
+      <Button onClick={() => onPaymentSuccess()} disabled={buttonDisabled}>
         Confirm Order
       </Button>
 

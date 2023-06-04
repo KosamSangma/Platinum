@@ -57,7 +57,7 @@ const YourOrdersScreen = () => {
                 <Tr>
                   <Th>Order Id</Th>
                   <Th>Order Date</Th>
-                  <Th>Paid Total</Th>
+                  <Th>Total Price</Th>
                   <Th>Items</Th>
                   <Th>Print Receipt</Th>
                 </Tr>
@@ -68,13 +68,14 @@ const YourOrdersScreen = () => {
                     <Td>{order._id}</Td>
                     <Td>{new Date(order.createdAt).toDateString()}</Td>
                     <Td>
-                      ${order.totalPrice} via {order.paymentMethod}
+                      ₹{order.totalPrice}
+                      {/* via {order.paymentMethod} */}
                     </Td>
                     <Td>
                       {order.orderItems.map((item) => (
                         <UnorderedList key={item._id}>
                           <ListItem>
-                            {item.qty} x {item.name} (${item.price} ech)
+                            {item.qty} x {item.name} (₹{item.price} each)
                           </ListItem>
                         </UnorderedList>
                       ))}

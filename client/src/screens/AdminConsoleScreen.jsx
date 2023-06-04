@@ -2,9 +2,9 @@ import { Box, Stack, Heading, Tabs, TabList, Tab, TabPanels, TabPanel } from '@c
 import { Navigate, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import UsersTab from '../components/UsersTab'
-// import OrdersTab from '../components/OrdersTab'
-// import ProductsTab from '../components/ProductsTab'
-// import ReviewsTab from '../components/ReviewsTab'
+import OrdersTab from '../components/OrdersTab'
+import ProductsTab from '../components/ProductsTab'
+import ReviewsTab from '../components/ReviewsTab'
 
 const AdminConsoleScreen = () => {
   const user = useSelector((state) => state.user)
@@ -29,7 +29,7 @@ const AdminConsoleScreen = () => {
               <TabPanel>
                 <UsersTab />
               </TabPanel>
-              {/* <TabPanel>
+              <TabPanel>
                 <ProductsTab />
               </TabPanel>
               <TabPanel>
@@ -37,7 +37,7 @@ const AdminConsoleScreen = () => {
               </TabPanel>
               <TabPanel>
                 <OrdersTab />
-              </TabPanel> */}
+              </TabPanel>
             </TabPanels>
           </Tabs>
         </Stack>

@@ -131,7 +131,7 @@ const ProductScreen = () => {
                         <StarIcon color={product.rating >= 5 ? 'orange.500' : 'gray.200'} />
                       </HStack>
                       <Text fontSize='md' fontWeight='bold' ml='4px'>
-                        {product.numberOfReviews} Reviews
+                        {product.numReviews} Reviews
                       </Text>
                     </Flex>
                   </Box>
